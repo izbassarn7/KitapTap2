@@ -14,11 +14,7 @@ import BookHead from "@/app/components/books/BookHead";
 import BookInfo from "@/app/components/books/BookInfo";
 import BookExchange from "@/app/components/books/BookExchange";
 
-const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(),
-  key: 'selection'
-};
+
 
 interface BookClientProps {
   book: SafeBook & {

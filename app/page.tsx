@@ -1,29 +1,17 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import Container from './components/Container'
-import EmptyState from './components/EmptyState';
-import getBooks from './actions/getBooks';
+import getBooks, { 
+  IBooksParams
+} from "@/app/actions/getBooks";
 import BookCard from './components/books/BookCard';
 import getCurrentUser from './actions/getCurrentUser';
-// import SearchForm from './components/inputs/SearchForm';
 
-const inter = Inter({ subsets: ['latin'] })
+interface HomeProps {
+  searchParams: IBooksParams
+};
 
-export default async function Home() {
-  const books = await getBooks();
+const Home = async ({ searchParams }: HomeProps) => {
+  const books = await getBooks(searchParams);
   const currentUser = await getCurrentUser();
-  const bookData = books.map((book) => {
-    return {
-      title: book.title,
-      autor: book.author,
-      location: book.location
-}})
-
-  if (books.length === 0) {
-    return (
-      <EmptyState showReset/>
-    )
-  }
   
   return (
     <Container>
@@ -40,7 +28,6 @@ export default async function Home() {
             gap-8
           "
         >
-          {/* <SearchForm onSearch={} /> */}
           {books.map((book) => {
             return (
               <BookCard 
@@ -55,3 +42,4 @@ export default async function Home() {
     </Container>
       )
 }
+export default Home;
