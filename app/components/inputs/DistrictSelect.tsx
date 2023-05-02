@@ -3,16 +3,15 @@ import React from "react";
 import Select from "react-select";
 
 export type DistrictSelectValue = {
-    label: string;
-    value: string;
-    emoji: string;
-  };
-  
+  label: string;
+  value: string;
+  emoji: string;
+};
 
-  interface DistrictSelectProps {
-    value?: DistrictSelectValue;
-    onChange: (value: DistrictSelectValue) => void;
-  }
+interface DistrictSelectProps {
+  value?: DistrictSelectValue;
+  onChange: (value: DistrictSelectValue | null) => void; // Allow null as a possible value
+}
 
 const DistrictSelect: React.FC<DistrictSelectProps> = ({ value, onChange }) => {
   return (
@@ -22,7 +21,7 @@ const DistrictSelect: React.FC<DistrictSelectProps> = ({ value, onChange }) => {
         isClearable
         options={almatyDistricts}
         value={value}
-        onChange={(value) => onChange(value)}
+        onChange={(value) => onChange(value)} // Pass the value as it is, can be DistrictSelectValue or null
         formatOptionLabel={(option: any) => (
           <div
             className="
@@ -32,12 +31,8 @@ const DistrictSelect: React.FC<DistrictSelectProps> = ({ value, onChange }) => {
                 gap-3
             "
           >
-            <div>
-              {option.emoji}
-            </div>
-            <div>
-              {option.label}
-            </div>
+            <div>{option.emoji}</div>
+            <div>{option.label}</div>
           </div>
         )}
         // Customize classNames and theme as needed

@@ -17,8 +17,8 @@ const Avatar: React.FC<AvatarProps> = (
     return ( 
         <Image
             className="rounded-full"
-            height={height || "40"}
-            width={width || "40"}
+            height={"40"}
+            width={"40"}
             src={src || "/images/placeholder.webp"}
             alt="Avatar"
         />

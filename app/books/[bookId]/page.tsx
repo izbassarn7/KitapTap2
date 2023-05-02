@@ -27,7 +27,7 @@ const BookPage = async ({ params }: { params: IParams }) => {
   return (
       <BookClient
         book={book}
-        exchanges={exchanges}
+        // exchanges={exchanges}
         currentUser={currentUser}
       />
   );
