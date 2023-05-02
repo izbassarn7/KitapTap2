@@ -27,10 +27,8 @@ export default async function getBooks(
     }
 
     if (location) {
-      query.location = location;
+        query.location = location;
     }
-
-
 
     const books = await prisma.book.findMany({
       where: query,

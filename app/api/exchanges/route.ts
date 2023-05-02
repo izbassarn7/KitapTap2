@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
-
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-export async function POST(
-  request: Request, 
-) {
+export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -13,25 +10,23 @@ export async function POST(
   }
 
   const body = await request.json();
-  const { 
-    bookId,
-   } = body;
+  const { bookId } = body;
 
-   if (!bookId ) {
+  if (!bookId) {
     return NextResponse.error();
   }
 
   const bookAndExchange = await prisma.book.update({
     where: {
-      id: bookId
+      id: bookId,
     },
     data: {
       exchange: {
         create: {
-          userId: currentUser.id,
-        }
-      }
-    }
+          userId: currentUser.id
+        },
+      },
+    },
   });
 
   return NextResponse.json(bookAndExchange);
