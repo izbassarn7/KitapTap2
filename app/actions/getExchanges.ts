@@ -16,7 +16,7 @@ export default async function getReservations(
     const query: any = {};
         
     if (bookId) {
-      query.requestedBookId = bookId;
+      query.bookId = bookId;
     };
 
     if (userId) {
@@ -30,7 +30,7 @@ export default async function getReservations(
     const exchange = await prisma.exchange.findMany({
       where: query,
       include: {
-        requestedBook: true
+        book: true
       },
       orderBy: {
         createdAt: 'desc'
@@ -42,8 +42,8 @@ export default async function getReservations(
       ...exchange,
       createdAt: exchange.createdAt.toISOString(),
       book: {
-        ...exchange.requestedBook,
-        createdAt: exchange.requestedBook.createdAt.toISOString(),
+        ...exchange.book,
+        createdAt: exchange.book.createdAt.toISOString(),
       },
     }));
 

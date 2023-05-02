@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeBook, SafeExchange, SafeUser } from "@/app/types";
+import { SafeBook,  SafeUser } from "@/app/types";
 
 import Container from "@/app/components/Container";
 import { categories } from "@/app/components/navbar/Categories";
@@ -21,7 +21,6 @@ const initialDateRange = {
 };
 
 interface BookClientProps {
-  exchanges?: SafeExchange[];
   book: SafeBook & {
     user: SafeUser;
   };
@@ -30,7 +29,6 @@ interface BookClientProps {
 
 const BookClient: React.FC<BookClientProps> = ({
   book,
-  exchanges = [],
   currentUser,
 }) => {
   const loginModal = useLoginModal();
@@ -53,7 +51,7 @@ const BookClient: React.FC<BookClientProps> = ({
         bookId: book?.id,
       })
       .then(() => {
-        toast.success('Book reserved!');
+        toast.success('Sent exchange message!');
         router.push('/exchanges');
       })
       .catch(() => {

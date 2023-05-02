@@ -17,7 +17,6 @@ import { useLocation } from "react-router-dom";
 
 
 interface BookCardProps {
-  userId: string;
   data: SafeBook;
   exchange?: Exchange;
   onAction?: (id: string) => void;
@@ -30,7 +29,6 @@ interface BookCardProps {
 const BookCard: React.FC<BookCardProps> = ({
   data,
   exchange,
-  userId,
   onAction,
   disabled,
   actionLabel,
@@ -82,7 +80,7 @@ const renderUserSection = () => {
     >
       <div
         className="
-        flex flex-col gap-2 w-full 
+        flex flex-col gap-2 w-full shadow-md rounded-xl
         
     "
       >
@@ -115,7 +113,7 @@ const renderUserSection = () => {
         
         <div
           className="
-            flex flex-col p-2 gap-2
+            flex flex-col p-4 gap-2
           "
         >
 
@@ -155,7 +153,7 @@ const renderUserSection = () => {
         </div>
         <div
           className="
-            font-semibold text-base
+            font-semibold text-sm
         "
         >
           {location?.label}, {district?.label} {district?.emoji}

@@ -8,14 +8,6 @@ export type SafeBook = Omit<
   createdAt: string;
 }
 
-export type SafeExchange = Omit<
-  Exchange, 
-  "createdAt" | "book"
-> & {
-  createdAt: string;
-  book: SafeBook;
-};
-
 export type SafeUser = Omit<
   User,
   "createdAt" | "updatedAt" | "emailVerified"

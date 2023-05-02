@@ -21,32 +21,32 @@ model User {
   updatedAt      DateTime  @updatedAt
   favoriteIDs    String[]  @db.ObjectId
 
-  accounts  Account[]
-  books     Book[]
-   exchangesAsOwner   Exchange[] @relation("OwnerToExchange")
-  exchangesAsRequestor Exchange[] @relation("RequestorToExchange")
+  accounts Account[]
+  books    Book[]
+  Exchange Exchange[]
 }
 
 model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String   @db.ObjectId
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.String
-  session_state      String?
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Book {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   author      String
   description String
@@ -55,29 +55,25 @@ model Book {
   cover       String
   location    String
   district    String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  available   Boolean    @default(true)
-  userId      String     @db.ObjectId
-  
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  available   Boolean  @default(true)
+  userId      String   @db.ObjectId
 
-  exchange    Exchange[]
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exchange Exchange[]
 }
 
-
 model Exchange {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  requestor      User    @relation("RequestorToExchange", fields: [requestorId], references: [id], onDelete: Cascade)
-  requestorId    String  @db.ObjectId
-  owner          User    @relation("OwnerToExchange", fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId        String  @db.ObjectId
-  requestedBook  Book    @relation(fields: [requestedBookId], references: [id], onDelete: Cascade)
-  requestedBookId String @db.ObjectId
-  status         ExchangeStatus @default(PENDING)
-  createdAt      DateTime @default(now())
+  id        String         @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String         @db.ObjectId
+  bookId    String         @db.ObjectId
+  status    ExchangeStatus @default(PENDING)
+  createdAt DateTime       @default(now())
+  ownerId   String         @db.ObjectId
 
+  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum ExchangeStatus {
