@@ -55,11 +55,6 @@ const BookInfo: React.FC<BookInfoProps> = ({
         </div>
       </div>
       <div>
-        <h2 className="text-xl font-semibold">Title</h2>
-        <p className="text-lg font-light text-neutral-500">{title}</p>
-      </div>
-      <hr />
-      <div>
         <h2 className="text-xl font-semibold">Author</h2>
         <p className="text-lg font-light text-neutral-500">{author}</p>
       </div>

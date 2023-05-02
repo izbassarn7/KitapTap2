@@ -24,7 +24,7 @@ const PostsPage = async () => {
     return (
       <ClientOnly>
         <EmptyState
-          title="No book found"
+          title="No books found"
           subtitle="Looks like you have no books."
         />
       </ClientOnly>

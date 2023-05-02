@@ -164,7 +164,7 @@ const renderUserSection = () => {
           className=" flex items-center gap-2
         font-light text-neutral-500 text-sm"
         >
-          <Avatar width="25" height="25" src={user?.image} />
+          <Avatar src={user?.image} />
           {user?.name}
         </div>
         {onAction && actionLabel && (

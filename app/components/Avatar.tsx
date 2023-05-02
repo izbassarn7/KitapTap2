@@ -3,15 +3,11 @@ import Image from "next/image";
 
 interface AvatarProps {
     src?: string | null | undefined;
-    height?: string;
-    width?: string;
 }
 
 const Avatar: React.FC<AvatarProps> = (
     {
         src,
-        height,
-        width
     }
 ) => {
     return ( 
