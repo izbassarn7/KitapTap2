@@ -21,6 +21,8 @@ export async function POST(request: Request) {
         image: true,
         createdAt: true,
         updatedAt: true,
+        telegramHandle: true,
+        whatsappNumber: true,
       },
     });
 

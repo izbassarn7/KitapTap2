@@ -1,23 +1,23 @@
+// pages/profile/page.tsx
 
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
 
+import getUserBooks from "@/app/actions/getUserBooks";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-import FavoritesClient from "./FavoritesClient";
-import getFavoriteBooks from "../actions/getFavoriteBooks";
-import ProfileClient from "../profile/ProfileClient";
+import ProfileClient from "./ProfileClient";
 
-const BookPage = async () => {
-  const books = await getFavoriteBooks();
+const ProfilePage = async () => {
+  const books = await getUserBooks();
   const currentUser = await getCurrentUser();
 
-  if (books.length === 0) {
+  if (!currentUser) {
     return (
       <ClientOnly>
         <EmptyState
-          title="No favorites found"
-          subtitle="Looks like you have no favorite books."
+          title="Empty Profile"
+          subtitle="Looks like you're new here! Sign up or log in to start your journey."
         />
       </ClientOnly>
     );
@@ -25,7 +25,7 @@ const BookPage = async () => {
 
   return (
     <ClientOnly>
-      <FavoritesClient
+      <ProfileClient
         books={books}
         currentUser={currentUser}
       />
@@ -33,4 +33,4 @@ const BookPage = async () => {
   );
 }
  
-export default BookPage;
+export default ProfilePage;

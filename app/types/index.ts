@@ -1,4 +1,4 @@
-import { Book, User, Exchange } from "@prisma/client";
+import { Book, User } from "@prisma/client";
 
 
 export type SafeBook = Omit<
@@ -6,6 +6,8 @@ export type SafeBook = Omit<
   "createdAt"
 > & {
   createdAt: string;
+  coverImage: string;
+  userId: SafeUser;
 }
 
 export type SafeUser = Omit<

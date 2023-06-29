@@ -14,6 +14,8 @@ import Avatar from "../Avatar";
 import { getGenreByLabel } from '@/app/hooks/useGenres';
 import Button from "../Button";
 import { useLocation } from "react-router-dom";
+import LoginModal from "../modals/LoginModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 interface BookCardProps {
@@ -53,7 +55,7 @@ const renderUserSection = () => {
   }
 };
 
-
+const loginModal = useLoginModal();
 
 
   const handleCancel = useCallback(
@@ -69,9 +71,17 @@ const renderUserSection = () => {
     [onAction, actionId, disabled]
   );
 
+  const handleOnClick = () => {
+    if (currentUser) {
+      router.push(`/books/${data.id}`);
+    } else {
+      loginModal.onOpen();
+    }
+  };
+
   return (
     <div
-      onClick={() => router.push(`/books/${data.id}`)}
+      onClick={handleOnClick}
       className="
         col-span-1
         cursor-pointer
@@ -139,7 +149,7 @@ const renderUserSection = () => {
           className="
           flex gap-2  items-baseline text-sm
             font-light text-neutral-500
-        "
+          "
         >
           by
           <div
@@ -148,7 +158,7 @@ const renderUserSection = () => {
           text-neutral-700
           "
           >
-            {data.author}
+          {data.author}
           </div>
         </div>
         <div

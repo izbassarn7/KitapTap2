@@ -21,6 +21,10 @@ model User {
   updatedAt      DateTime  @updatedAt
   favoriteIDs    String[]  @db.ObjectId
 
+  telegramHandle String?   
+  whatsappNumber String?  
+  contactEmail   String? 
+
   accounts Account[]
   books    Book[]
   Exchange Exchange[]

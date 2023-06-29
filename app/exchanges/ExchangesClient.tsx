@@ -42,8 +42,8 @@ const TripsClient: React.FC<ExchangesUserProps> = ({
   return (
     <Container>
       <Heading
-        title="Trips"
-        subtitle="Where you've been and where you're going"
+        title="Your exchanges"
+        subtitle="List of your exchanges"
       />
       <div 
         className="

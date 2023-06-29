@@ -8,6 +8,8 @@ interface User {
   image: string;
   createdAt: Date;
   updatedAt: Date;
+  telegramHandle: string;  // Added
+  whatsappNumber: string; 
 }
 
 const useUser = (userId: string) => {
@@ -28,6 +30,7 @@ const useUser = (userId: string) => {
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
+          console.log("User data:", userData);
         } else {
           console.error("Error fetching user data");
         }

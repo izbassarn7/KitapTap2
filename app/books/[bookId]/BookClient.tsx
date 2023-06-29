@@ -84,7 +84,7 @@ const BookClient: React.FC<BookClientProps> = ({
               locationValue={book.location}
               user={book.user}
             />
-            <BookExchange onSubmit={onCreateExchange} disabled={isLoading} />
+            <BookExchange currentUser={currentUser} book={book} onSubmit={onCreateExchange} disabled={isLoading} />
           </div>
         </div>
       </div>

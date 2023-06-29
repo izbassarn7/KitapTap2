@@ -1,10 +1,17 @@
-'use client';
+"use client";
 
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -24,16 +31,17 @@ const RegisterModal = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
       name: "",
       email: "",
       password: "",
+      telegramHandle: "", // Added
+      whatsappNumber: "", // Added
     },
   });
-
-  
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -54,7 +62,7 @@ const RegisterModal = () => {
   const onToggle = useCallback(() => {
     registerModal.onClose();
     loginModal.onOpen();
-  }, [registerModal, loginModal])
+  }, [registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -87,6 +95,29 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+      <Input // Added
+        id="telegramHandle"
+        label="Telegram"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
+      <div className="w-full">
+        <Controller
+          control={control}
+          name="whatsappNumber"
+          render={({ field: { onChange, value } }) => (
+            <PhoneInput
+            inputClass="w-full"
+
+              country={"kz"} // Default country
+              value={value}
+              onChange={onChange}
+              disabled={isLoading}
+            />
+          )}
+        />
+      </div>
     </div>
   );
 
@@ -97,7 +128,7 @@ const RegisterModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => signIn('google')}
+        onClick={() => signIn("google")}
       />
       <div
         className="
@@ -110,12 +141,12 @@ const RegisterModal = () => {
         <div className="justify-center flex flex-row items-center gap-2">
           <div>Already have an account?</div>
           <div
-          onClick={onToggle}
+            onClick={onToggle}
             className="
             text-neutral-900
               cursor-pointer
               hover:underline"
-              >
+          >
             Log in
           </div>
         </div>

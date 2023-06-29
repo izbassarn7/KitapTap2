@@ -7,6 +7,7 @@ import getBooks, {
 } from "@/app/actions/getBooks";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
+import Heading from "./components/Heading";
 
 interface HomeProps {
   searchParams: IBooksParams
@@ -27,9 +28,14 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <ClientOnly>
       <Container>
+        <div
+        className="pt-24 pb-5 italic">
+        <Heading center title="Welcome to Online Book Crossing platform" />
+        </div>
+     
         <div 
           className="
-            pt-28
+            
             grid 
             grid-cols-1 
             sm:grid-cols-2 

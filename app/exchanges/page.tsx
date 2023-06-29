@@ -27,8 +27,8 @@ const ExchangesPage = async () => {
     return (
       <ClientOnly>
         <EmptyState
-          title="No trips found"
-          subtitle="Looks like you havent reserved any trips."
+          title="No exchanges found"
+          subtitle="Looks like you havent exchanged any books."
         />
       </ClientOnly>
     );

@@ -43,7 +43,7 @@ const BookHead: React.FC<BookHeadProps> = ({
 
     <Heading
         title={title}
-        subtitle={`${locationData?.label}, ${districtData?.label}, ${districtData?.emoji}`}
+        subtitle={`${locationData?.label}, ${districtData?.label} ${districtData?.emoji}`}
       />
     </div>
       <div className="

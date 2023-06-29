@@ -76,12 +76,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             absolute
             rounded-xl
             shadow-md
-            w-[40vw]
+            w-[30vw]
             md:w-3/5
             bg-white
             overflow-hidden
             right-0
-            md:right-8
+            md:right-20
             top-12
             text-sm
             p-1
@@ -98,15 +98,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 <MenuItem 
                   label="Profile" 
-                  onClick={() => {}}
+                  onClick={() => router.push('/profile')}
                 />
                 <MenuItem 
                   label="My books" 
                   onClick={() => router.push('/posts')}
-                />
-                <MenuItem 
-                  label="Exchanges" 
-                  onClick={() => router.push('/exchanges')}
                 />
                 <hr />
                 <MenuItem 

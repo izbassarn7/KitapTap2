@@ -7,7 +7,9 @@ export async function POST(request: Request) {
   const { 
     email, 
     name, 
-    password 
+    password ,
+    telegramHandle,  // Added
+    whatsappNumber,  // Added
 } = body;
 
   const hashedPassword = await bcrypt.hash(password, 12);
@@ -17,6 +19,8 @@ export async function POST(request: Request) {
       email,
       name,
       hashedPassword,
+      telegramHandle,  // Added
+      whatsappNumber,  // Added
     },
   });
 
