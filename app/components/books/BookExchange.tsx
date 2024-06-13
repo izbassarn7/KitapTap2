@@ -57,6 +57,8 @@ const BookExchange: React.FC<BookExchangeProps> = ({
             <Heading center subtitle="Contact book owner:" />
             <Button
   label="Telegram"
+  outline
+  icon={FaTelegram}
   onClick={() => {
     const message = encodeURIComponent(`Hi ${user.name}, I am interested in your book titled '${book.title}'. Can we discuss more about it?`);
     window.open(`https://t.me/${user?.telegramHandle}?text=${message}`, "_blank");
@@ -64,6 +66,8 @@ const BookExchange: React.FC<BookExchangeProps> = ({
 />
 <Button
   label="WhatsApp"
+  icon={FaWhatsapp}
+  outline
   onClick={() => {
     const message = encodeURIComponent(`Hi ${user.name}, I am interested in your book titled '${book.title}'. Can we discuss more about it?`);
     window.open(`https://wa.me/${user?.whatsappNumber}?text=${message}`, "_blank");
@@ -71,6 +75,8 @@ const BookExchange: React.FC<BookExchangeProps> = ({
 />
 <Button
   label="Email"
+  outline
+  icon={MdMail}
   onClick={() => {
     const subject = encodeURIComponent("Interested in your book on KitapTap");
     const body = encodeURIComponent(`Hi ${user.name},\n\nI am interested in the book titled '${book.title}'. Can we discuss more about it?\n\nRegards,\n${currentUser?.name}`);

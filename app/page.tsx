@@ -28,14 +28,11 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <ClientOnly>
       <Container>
-        <div
-        className="pt-24 pb-5 italic">
-        <Heading center title="Welcome to Online Book Crossing platform" />
+        <div className="pt-24 pb-5 italic">
+          <Heading center title="Welcome to Online Book Crossing platform" />
         </div>
-     
         <div 
           className="
-            
             grid 
             grid-cols-1 
             sm:grid-cols-2 
@@ -47,16 +44,17 @@ const Home = async ({ searchParams }: HomeProps) => {
           "
         >
           {books.map((book: any) => (
-            <BookCard
-              currentUser={currentUser}
-              key={book.id}
-              data={book}
-            />
+            <div className="h-full" key={book.id}>
+              <BookCard
+                currentUser={currentUser}
+                data={book}
+              />
+            </div>
           ))}
         </div>
       </Container>
     </ClientOnly>
-  )
-}
+  );
+};
 
 export default Home;

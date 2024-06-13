@@ -1,6 +1,4 @@
-// useEditProfileModal.ts
 import { create } from 'zustand';
-import { SafeUser } from '../types';
 
 interface EditProfileModalStore {
   isOpen: boolean;
@@ -9,13 +7,15 @@ interface EditProfileModalStore {
 }
 
 const useEditProfileModal = create<EditProfileModalStore>((set) => ({
-    isOpen: false,
-    onOpen: () => {
-      console.log("Opening modal"); // Check if this is logged
-      set({ isOpen: true });
-    },
-    onClose: () => set({ isOpen: false }),
-  }));
-  
+  isOpen: false,
+  onOpen: () => {
+    console.log("Opening modal"); // Check if this is logged
+    set({ isOpen: true });
+  },
+  onClose: () => {
+    console.log("Closing modal"); // Check if this is logged
+    set({ isOpen: false });
+  },
+}));
 
 export default useEditProfileModal;

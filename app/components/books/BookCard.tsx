@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import React from "react";
 import useCountries from "@/app/hooks/useCountries";
@@ -16,7 +16,6 @@ import Button from "../Button";
 import { useLocation } from "react-router-dom";
 import LoginModal from "../modals/LoginModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
-
 
 interface BookCardProps {
   data: SafeBook;
@@ -44,19 +43,16 @@ const BookCard: React.FC<BookCardProps> = ({
   const district = getDistrictByValue(data.district);
   const location = getCountryByValue(data.location);
   
-// Usage example
+  const genreData = getGenreByLabel(data.genre);
+  const currentPath = usePathname();
 
-const genreData = getGenreByLabel(data.genre);
-const currentPath = usePathname();
+  const renderUserSection = () => {
+    if (currentPath === "/posts") {
+      return true;
+    }
+  };
 
-const renderUserSection = () => {
-  if (currentPath === "/posts") {
-    return true;
-  }
-};
-
-const loginModal = useLoginModal();
-
+  const loginModal = useLoginModal();
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -90,7 +86,7 @@ const loginModal = useLoginModal();
     >
       <div
         className="
-        flex flex-col gap-2 w-full shadow-md rounded-xl
+        flex flex-col gap-2 w-full shadow-md rounded-xl h-full
         
     "
       >
@@ -100,7 +96,7 @@ const loginModal = useLoginModal();
             w-full
             relative
             overflow-hidden
-            rounded-xl
+            rounded-t-xl
             shadow-md
         "
         >
@@ -123,68 +119,63 @@ const loginModal = useLoginModal();
         
         <div
           className="
-            flex flex-col p-4 gap-2
+            flex flex-col p-4 gap-2 flex-grow
           "
         >
-
-        
-        <div
-          className="
-           text-end  font-light text-neutral-500 text-sm"
-        >
-          {data.genre} {genreData?.emoji}
-
-        </div>
+          <div
+            className="
+              text-end font-light text-neutral-500 text-sm
+            "
+          >
+            {data.genre} {genreData?.emoji}
+          </div>
           <div className="flex justify-between items-center">
             <div
               className="
-            font-semibold text-xl
-        "
+                font-semibold text-xl
+              "
             >
               {data.title}
             </div>
           </div>
 
-        <div
-          className="
-          flex gap-2  items-baseline text-sm
-            font-light text-neutral-500
-          "
-        >
-          by
           <div
             className="
-           text-base
-          text-neutral-700
-          "
+              flex gap-2 items-baseline text-sm font-light text-neutral-500
+            "
           >
-          {data.author}
+            by
+            <div
+              className="
+                text-base text-neutral-700
+              "
+            >
+              {data.author}
+            </div>
           </div>
-        </div>
-        <div
-          className="
-            font-semibold text-sm
-        "
-        >
-          {location?.label}, {district?.label} {district?.emoji}
-        </div>
+          <div
+            className="
+              font-semibold text-sm
+            "
+          >
+            {location?.label}, {district?.label} {district?.emoji}
+          </div>
 
-        <div
-        onClick={() => router.push(`/profiles/${user?.id}`)}
-          className=" flex items-center gap-2
-        font-light text-neutral-500 text-sm"
-        >
-          <Avatar src={user?.image} />
-          {user?.name}
-        </div>
-        {onAction && actionLabel && (
-          <Button
-            disabled={disabled}
-            small
-            label={actionLabel} 
-            onClick={handleCancel}
-          />
-        )}
+          <div
+            onClick={() => router.push(`/profiles/${user?.id}`)}
+            className="flex items-center gap-2 font-light text-neutral-500 text-sm"
+          >
+            <Avatar src={user?.image} />
+            {user?.name}
+          </div>
+          {onAction && actionLabel && (
+            <Button
+              disabled={disabled}
+              small
+              label={actionLabel}
+              onClick={handleCancel}
+            />
+          )}
         </div>
       </div>
     </div>

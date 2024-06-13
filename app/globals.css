@@ -7,3 +7,23 @@ body,
 :root {
   height: 100%;
 }
+
+.group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+
+.sticky {
+  position: sticky;
+}
+
+.top-16 {
+  top: 4rem; /* Adjust the value if necessary to fit your layout */
+}
+
+.bg-emerald-600 {
+  background-color: #059669; /* Emerald color */
+}

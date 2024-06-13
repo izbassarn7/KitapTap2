@@ -1,4 +1,3 @@
-// api/users/route.ts
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
 
@@ -33,6 +32,26 @@ export async function POST(request: Request) {
     return NextResponse.json(user);
   } catch (error) {
     console.error("Error while fetching user:", error);
+    return NextResponse.error();
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    const { id, name, email, image, telegramHandle, whatsappNumber } = await request.json();
+
+    if (!id) {
+      return NextResponse.error();
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: { id },
+      data: { name, email, image, telegramHandle, whatsappNumber },
+    });
+
+    return NextResponse.json(updatedUser);
+  } catch (error) {
+    console.error("Error while updating user:", error);
     return NextResponse.error();
   }
 }
