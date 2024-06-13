@@ -26,6 +26,7 @@ export default async function getBookById(
     return {
       ...book,
       createdAt: book.createdAt.toString(),
+      coverImage: book.coverImage?.toString() || null,
       user: {
         ...book.user,
         createdAt: book.user.createdAt.toString(),
