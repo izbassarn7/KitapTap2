@@ -10,12 +10,12 @@ export default async function getBookById(
   try {
     const { userId } = params;
 
-    const user = await prisma.book.findUnique({
+    const book = await prisma.book.findUnique({
       where: {
         id: userId,
       },
       include: {
-        books: true
+        user: true // Correctly include related user data
       }
     });
 
@@ -28,10 +28,10 @@ export default async function getBookById(
       createdAt: book.createdAt.toString(),
       user: {
         ...book.user,
-        telegramHandle: user.telegramHandle.toString(),
+        telegramHandle: book.user.telegramHandle?.toString(),
       }
     };
   } catch (error: any) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 }
