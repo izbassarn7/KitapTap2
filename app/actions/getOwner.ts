@@ -15,7 +15,7 @@ export default async function getBookById(
         id: userId,
       },
       include: {
-        user: true // Correctly include related user data
+        user: true // Include the user related to the book
       }
     });
 
@@ -28,10 +28,10 @@ export default async function getBookById(
       createdAt: book.createdAt.toString(),
       user: {
         ...book.user,
-        telegramHandle: book.user.telegramHandle?.toString(),
+        telegramHandle: book.user?.telegramHandle?.toString(),
       }
     };
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error(error);
   }
 }
